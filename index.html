@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>倉頡打字大師 - 專業文章練習</title>
+    <title>倉頡打字大師 - 多元美文練習</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --success: #27ae60;
-            --warning: #f1c40f;
-            --danger: #e74c3c;
-            --bg: #f4f7f6;
-            --text: #333;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --primary: #6366f1; /* 漂亮的紫色調 */
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --accent: #ec4899;
         }
 
         body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
             background-color: var(--bg);
+            color: var(--text-dark);
             margin: 0;
             display: flex;
             justify-content: center;
@@ -25,182 +25,172 @@
             min-height: 100vh;
         }
 
-        .main-card {
-            background: white;
+        .container {
+            background: var(--card);
             width: 90%;
-            max-width: 900px;
-            padding: 30px;
+            max-width: 850px;
+            padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .header {
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 15px;
         }
 
         select {
-            padding: 10px;
-            border-radius: 8px;
+            padding: 8px 15px;
+            border-radius: 10px;
             border: 1px solid #ddd;
             font-size: 1rem;
+            cursor: pointer;
             outline: none;
         }
 
-        .text-display {
-            background: #fdfdfd;
-            padding: 25px;
-            border-radius: 12px;
+        #textDisplay {
+            font-size: 1.6rem;
             line-height: 2.2;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-align: left;
-            border: 1px solid #f0f0f0;
-            min-height: 180px;
-            word-wrap: break-word;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            min-height: 150px;
+            border: 1px solid #f1f5f9;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .char { color: var(--text); position: relative; transition: 0.1s; }
-        .char-done { color: #ccc; }
+        .char { color: var(--text-dark); position: relative; }
+        .char-done { color: #cbd5e1; }
         .char-active { 
-            background: #fff3cd; 
-            border-bottom: 4px solid var(--warning);
+            background: #eef2ff; 
+            color: var(--primary);
+            border-bottom: 4px solid var(--primary);
             font-weight: bold;
         }
 
-        .input-area {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .hint {
-            font-size: 1.8rem;
-            color: var(--accent);
-            font-weight: bold;
+        .input-box { text-align: center; margin-bottom: 30px; }
+        #codeHint {
+            font-size: 1.3rem;
+            color: var(--primary);
             margin-bottom: 15px;
-            height: 40px;
+            height: 35px;
+            font-weight: 600;
         }
 
         input#typingInput {
-            width: 60%;
+            width: 70%;
             font-size: 2.5rem;
             padding: 12px;
             text-align: center;
-            border: 4px solid #eee;
+            border: 3px solid #e2e8f0;
             border-radius: 15px;
             outline: none;
-            transition: 0.3s;
+            transition: all 0.3s;
         }
 
-        input#typingInput:focus { border-color: var(--accent); }
+        input#typingInput:focus { border-color: var(--primary); background: #fcfdff; }
 
-        .stats-grid {
+        .dashboard {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
         }
 
-        .stat-item { text-align: center; }
-        .stat-label { font-size: 0.85rem; color: #7f8c8d; display: block; margin-bottom: 5px; }
-        .stat-value { font-size: 1.6rem; font-weight: bold; color: var(--primary); }
+        .stat-card { background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #f1f5f9; text-align: center; }
+        .label { font-size: 0.8rem; color: var(--text-light); display: block; margin-bottom: 5px; text-transform: uppercase; }
+        .value { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); }
 
-        /* 彈窗 Modal */
+        /* Result Modal */
         #resultModal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
-            z-index: 999;
+            z-index: 1000;
         }
 
         .modal-content {
             background: white;
-            padding: 40px;
-            border-radius: 25px;
+            padding: 45px;
+            border-radius: 24px;
             text-align: center;
             max-width: 450px;
-            width: 90%;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 85%;
+            animation: slideUp 0.4s ease-out;
         }
 
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .rank-badge {
-            font-size: 1.4rem;
-            padding: 12px 25px;
+        .rank-tag {
+            font-size: 1.2rem;
+            padding: 12px 24px;
             border-radius: 50px;
+            color: white;
             display: inline-block;
             margin: 20px 0;
-            font-weight: bold;
-            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        .btn-restart {
-            background: var(--accent);
+        button {
+            background: var(--primary);
             color: white;
-            padding: 15px 40px;
             border: none;
-            border-radius: 10px;
+            padding: 14px 35px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             transition: 0.2s;
         }
-
-        .btn-restart:hover { background: #2980b9; }
+        button:hover { opacity: 0.9; transform: scale(1.02); }
     </style>
 </head>
 <body>
 
-<div class="main-card">
-    <div class="header">
-        <h1>倉頡練習大師</h1>
+<div class="container">
+    <header>
+        <h2 style="margin:0; color:var(--primary); letter-spacing: 1px;">倉頡美文測速</h2>
         <select id="articleSelect"></select>
+    </header>
+
+    <div id="textDisplay">載入中...</div>
+
+    <div class="input-box">
+        <div id="codeHint">準備好了嗎？</div>
+        <input type="text" id="typingInput" placeholder="請輸入倉頡碼" autofocus autocomplete="off">
     </div>
 
-    <div class="text-display" id="textDisplay"></div>
-
-    <div class="input-area">
-        <div class="hint" id="codeHint">請開始輸入...</div>
-        <input type="text" id="typingInput" placeholder="輸入倉頡代碼" autofocus autocomplete="off">
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-item"><span class="stat-label">完成進度</span><span class="stat-value" id="progressVal">0/0</span></div>
-        <div class="stat-item"><span class="stat-label">WPM (速度)</span><span class="stat-value" id="wpmVal">0</span></div>
-        <div class="stat-item"><span class="stat-label">時間 (秒)</span><span class="stat-value" id="timeVal">0</span></div>
-        <div class="stat-item"><span class="stat-label">錯誤次數</span><span class="stat-value" id="mistakeVal" style="color:var(--danger)">0</span></div>
+    <div class="dashboard">
+        <div class="stat-card"><span class="label">進度</span><span class="value" id="progressVal">0/0</span></div>
+        <div class="stat-card"><span class="label">當前 WPM</span><span class="value" id="wpmVal">0</span></div>
+        <div class="stat-card"><span class="label">準確率</span><span class="value" id="accVal">100%</span></div>
+        <div class="stat-card"><span class="label">計時</span><span class="value" id="timeVal">0s</span></div>
     </div>
 </div>
 
 <div id="resultModal">
     <div class="modal-content">
-        <h2 style="margin-top:0;">練習結算報告</h2>
-        <div style="font-size: 1.1rem;">最終速度</div>
-        <div id="finalWpm" style="font-size: 3.5rem; font-weight: 900; color: var(--accent);">0</div>
-        <div style="font-size: 1rem; margin-top:-5px;">Words Per Minute</div>
-        
-        <div id="rankBadge" class="rank-badge">計算中...</div>
-        <p id="rankDesc" style="line-height: 1.6; color: #555; margin-bottom: 30px;"></p>
-        
-        <button class="btn-restart" onclick="closeModal()">再挑戰一次</button>
+        <h3 style="margin-top:0;">練習完畢！</h3>
+        <p>您的平均打字速度為</p>
+        <div style="font-size: 4rem; font-weight: 900; color: var(--primary);" id="finalWpm">0</div>
+        <p style="margin-top:-10px;">字 / 分鐘 (WPM)</p>
+        <div id="rankBadge" class="rank-tag">計算中</div>
+        <p id="rankFeedback" style="color: var(--text-light); line-height: 1.6; margin-bottom: 30px;"></p>
+        <button onclick="location.reload()">再練一篇</button>
     </div>
 </div>
 
 <script>
-// --- 數據庫：10篇文章 ---
+// 10 篇多元主題精選文章
 const articles = [
     { title: "1. 科技與生活", content: "現代科技進步神速，智慧型手機已成為生活的核心。從早晨的鬧鐘到深夜的閱讀，我們依賴屏幕獲取資訊。人工智慧的發展更將自動化推向新高度。然而，在便利之餘，我們也應反思數位疲勞對健康的影響。適時放下手機，親近大自然，找回真實生活的節奏，才能在科技浪潮中保持身心平衡。" },
     { title: "2. 大自然的啟示", content: "走進深山密林，聽見溪水淙淙，看見綠葉繁茂。自然界每一處細節都充滿智慧。種子在泥土中靜默等待，直到春雨降臨才破土而出。這種生命力提醒我們，成長需要時間與耐性。環境保護不只是口號，更是對後代的責任。珍惜每一滴水與每一棵樹，讓這片土地能持續孕育希望與美麗。" },
@@ -214,153 +204,132 @@ const articles = [
     { title: "10. 友誼的價值", content: "真正的友誼像是一盞燈，在黑暗中為我們指引方向。朋友是那個理解你的沉默，支持你的夢想的人。在困難時伸出援手，在成功時共享喜悅。友誼需要真誠去經營，用時間去灌溉。雖然生活會改變，人們會各奔東西，但深厚的情誼經得起考驗。珍惜身邊每一位真心待你的朋友，那是人生最寶貴的財富。" }
 ];
 
-// 核心字典
-const cjDict = {"現":"mbuu","代":"op","科":"hdyj","技":"qje","進":"ytp","步":"ylh","神":"ifsh","速":"ylok","智":"omda","慧":"qjsh","型":"mgtn","手":"q","機":"udwi","已":"sc","成":"ihsh","為":"itrf","生":"hgm","活":"ehqr","的":"hdi","核":"dvo","心":"p","從":"ooo","早":"at","晨":"mmv","鬧":"lnly","鐘":"clg","到":"mgln","深":"eynd","夜":"yokx","閱":"lnru","讀":"lntm","我":"his","們":"onj","依":"oyv","賴":"dmlo","屏":"shjt","幕":"atbi","獲":"etue","取":"sj","資":"mbo","訊":"yrnj","人":"o","工":"m","發":"nomye","展":"shv","更":"mllk","將":"vmid","自":"hbd","動":"hks","化":"op","推":"qog","向":"hbr","新":"yldj","高":"ybr","度":"it","然":"bkf","而":"mbl","在":"gl","便":"omk","利":"hdln","之","i","餘":"onyd","也","p","應":"yogg","發":"nomye","反":"hke","思","wmp","數":"lvok","位":"oyt","疲":"hdk","勞":"ffs","對":"ytdi","健":"onlk","康":"ihe","影":"vfh","響":"vhlh","適":"ytpk","時":"agdi","放":"ysk","下":"m","親":"yldu","近":"yp","大":"k","察":"jmmf","找":"qi","回":"wr","真":"jtbc","實":"jtwi","節":"thpl","奏":"qhk","才":"dh","能":"itpp","浪":"eiv","潮":"ejbb","中":"l","保":"ord","持":"qghi","身":"hph","平":"mfs","衡":"hory"};
+// 擴展字典
+const cjDict = {"現":"mbuu","代":"op","科":"hdyj","技":"qje","進":"ytp","步":"ylh","神":"ifsh","速":"ylok","智":"omda","慧":"qjsh","型":"mgtn","手":"q","機":"udwi","已":"sc","成":"ihsh","為":"itrf","生":"hgm","活":"ehqr","的":"hdi","核":"dvo","心":"p","從":"ooo","早":"at","晨":"mmv","鬧":"lnly","鐘":"clg","到":"mgln","深":"eynd","夜":"yokx","閱":"lnru","讀":"lntm","我":"his","們":"onj","依":"oyv","賴":"dmlo","屏":"shjt","幕":"atbi","獲":"etue","取":"sj","資":"mbo","訊":"yrnj","人":"o","工":"m","發":"nomye","展":"shv","更":"mllk","將":"vmid","自":"hbd","動":"hks","化":"op","推":"qog","向":"hbr","新":"yldj","高":"ybr","度":"it","然":"bkf","而":"mbl","在":"gl","便":"omk","利":"hdln","之":"i","餘":"onyd","也":"p","應":"yogg","反":"hke","思","wmp","數":"lvok","位":"oyt","疲":"hdk","勞":"ffs","對":"ytdi","健":"onlk","康":"ihe","影":"vfh","響":"vhlh","適":"ytpk","時":"agdi","放":"ysk","下":"m","親":"yldu","近":"yp","大":"k","察":"jmmf","找":"qi","回":"wr","真":"jtbc","實":"jtwi","節":"thpl","奏":"qhk","才":"dh","能":"itpp","浪":"eiv","潮":"ejbb","中":"l","保":"ord","持":"qghi","身":"hph","平":"mfs","衡":"hory","走":"go","溪":"ebxe","水":"e","葉":"tptd","處":"hurd","細":"vmf","種":"hdgl","待":"hogf","春":"qkua","雨":"mby","出":"uu","耐":"mblni","任":"ong","護":"yrtxh","每一":"mwm","滴":"eycb","樹":"dtud","地":"gp","希望":"kdnb","美":"tgu","廚":"mthi","陣":"nlkq","飯":"onhe","菜":"tbdf","最":"atxe","溫":"eotl","紅":"vfm","肉":"obw","魚":"nwf","甜":"tmhr","愛":"bbme","享受":"ybnd","文化":"ykop","傳承":"onqi","繁":"mksf","忙":"pwn","舒":"hory","壓":"migi","感受":"pbbm","簡單":"tthw","純粹":"vfsh","幸福":"gyp","書本":"dagm","穿越":"ytmv","時空":"agkc","對話":"yrgr","探索":"jtbd","視野":"hbdw","提升":"htht","能力":"itpp","優美":"oynk","辭句":"ytjr","力量":"ytks","安慰":"pvgy","心靈":"pmie","熱情":"fsqb","理想":"pmbu","漫步":"eylh","街道":"ytyt","觀察":"jmmf","律動":"hoks","古老":"jrje","玻璃":"mgmg","帷幕":"atbi","訴說":"yrry","變遷":"ytp","咖啡":"rkfk","故事":"jrjb","平常":"fbfr","美景":"ktag","野花":"wt"};
 const keyMap = {'a':'日','b':'月','c':'金','d':'木','e':'水','f':'火','g':'土','h':'竹','i':'戈','j':'十','k':'大','l':'中','m':'一','n':'弓','o':'人','p':'心','q':'手','r':'口','s':'尸','t':'廿','u':'山','v':'女','w':'田','y':'卜'};
 
-let currentText = "";
-let currentIndex = 0;
+let currentIdx = 0;
+let articleText = "";
 let startTime = null;
-let timerId = null;
 let mistakes = 0;
+let timer = null;
 
 const textDisplay = document.getElementById('textDisplay');
 const typingInput = document.getElementById('typingInput');
 const articleSelect = document.getElementById('articleSelect');
 
-// 初始化選單
-articles.forEach((art, i) => {
+articles.forEach((a, i) => {
     let opt = document.createElement('option');
     opt.value = i;
-    opt.innerText = art.title;
+    opt.innerText = a.title;
     articleSelect.appendChild(opt);
 });
 
-function loadArticle(idx) {
-    currentText = articles[idx].content;
-    currentIndex = 0;
+function startTest(idx) {
+    articleText = articles[idx].content;
+    currentIdx = 0;
     mistakes = 0;
     startTime = null;
-    if(timerId) clearInterval(timerId);
-    
-    document.getElementById('timeVal').innerText = "0";
+    clearInterval(timer);
+    typingInput.value = "";
     document.getElementById('wpmVal').innerText = "0";
-    document.getElementById('mistakeVal').innerText = "0";
+    document.getElementById('timeVal').innerText = "0s";
     renderText();
     updateHint();
-    typingInput.value = "";
 }
 
 function renderText() {
-    textDisplay.innerHTML = "";
-    currentText.split("").forEach((char, i) => {
-        let span = document.createElement('span');
-        span.innerText = char;
-        span.className = "char " + (i < currentIndex ? "char-done" : (i === currentIndex ? "char-active" : ""));
-        textDisplay.appendChild(span);
-    });
-    document.getElementById('progressVal').innerText = `${currentIndex}/${currentText.length}`;
+    textDisplay.innerHTML = articleText.split('').map((char, i) => {
+        let cls = "char";
+        if (i < currentIdx) cls += " char-done";
+        if (i === currentIdx) cls += " char-active";
+        return `<span class="${cls}">${char}</span>`;
+    }).join('');
+    document.getElementById('progressVal').innerText = `${currentIdx}/${articleText.length}`;
 }
 
 function updateHint() {
-    const char = currentText[currentIndex];
+    const char = articleText[currentIdx];
     const code = cjDict[char];
+    const hint = document.getElementById('codeHint');
     if (!code) {
-        document.getElementById('codeHint').innerText = "請輸入空白鍵跳過標點符號";
+        hint.innerText = "請按空白鍵或輸入標點符號";
     } else {
-        const chineseCode = code.split("").map(l => keyMap[l] || l).join("");
-        document.getElementById('codeHint').innerText = `${char}：${chineseCode} (${code.toUpperCase()})`;
+        const cnCode = code.split('').map(c => keyMap[c] || c).join('');
+        hint.innerText = `${char}：${cnCode} (${code.toUpperCase()})`;
     }
 }
 
 typingInput.addEventListener('input', (e) => {
-    if(!startTime) {
+    if (!startTime) {
         startTime = new Date();
-        timerId = setInterval(updateStats, 1000);
+        timer = setInterval(updateStats, 1000);
     }
-
     const val = e.target.value.toLowerCase().trim();
-    const char = currentText[currentIndex];
-    const correctCode = cjDict[char];
+    const char = articleText[currentIdx];
+    const code = cjDict[char];
 
-    // 處理標點符號
-    if (!correctCode) {
-        currentIndex++;
+    if (!code) { 
+        currentIdx++;
         typingInput.value = "";
         checkFinish();
         return;
     }
 
-    if (val === correctCode) {
-        currentIndex++;
+    if (val === code) {
+        currentIdx++;
         typingInput.value = "";
         checkFinish();
-    } else if (val.length >= correctCode.length) {
+    } else if (val.length >= (code ? code.length : 1)) {
         mistakes++;
-        document.getElementById('mistakeVal').innerText = mistakes;
         typingInput.value = "";
     }
 });
 
 function updateStats() {
-    const elapsed = Math.floor((new Date() - startTime) / 1000);
-    document.getElementById('timeVal').innerText = elapsed;
-    if (elapsed > 0) {
-        const wpm = Math.round((currentIndex / elapsed) * 60);
-        document.getElementById('wpmVal').innerText = wpm;
-    }
+    const sec = Math.floor((new Date() - startTime) / 1000);
+    document.getElementById('timeVal').innerText = sec + "s";
+    const wpm = Math.round((currentIdx / (sec || 1)) * 60);
+    document.getElementById('wpmVal').innerText = wpm;
 }
 
 function checkFinish() {
-    if (currentIndex >= currentText.length) {
-        clearInterval(timerId);
+    renderText();
+    updateHint();
+    if (currentIdx >= articleText.length) {
+        clearInterval(timer);
         showResult();
-    } else {
-        renderText();
-        updateHint();
     }
 }
 
 function showResult() {
-    const wpm = document.getElementById('wpmVal').innerText;
+    const wpm = parseInt(document.getElementById('wpmVal').innerText);
     document.getElementById('finalWpm').innerText = wpm;
-    
     const badge = document.getElementById('rankBadge');
-    const desc = document.getElementById('rankDesc');
+    const feedback = document.getElementById('rankFeedback');
     
-    if (wpm >= 76) {
-        badge.innerText = "🏆 神速大師";
-        badge.style.backgroundColor = "#9b59b6";
-        desc.innerText = "你的打字速度簡直不可思議！已經達到專業速記員的水平，對倉頡拆碼的肌肉記憶非常深厚。";
-    } else if (wpm >= 51) {
-        badge.innerText = "🌟 熟練寫手";
-        badge.style.backgroundColor = var(--success);
-        desc.innerText = "非常出色！你已經超越了絕大多數的辦公室使用者，能流暢地將思考轉化為文字。";
-    } else if (wpm >= 31) {
-        badge.innerText = "✅ 一般辦公";
-        badge.style.backgroundColor = var(--accent);
-        desc.innerText = "合格！你的速度應付日常文書處理綽綽有餘，繼續練習將會更快。";
-    } else if (wpm >= 16) {
-        badge.innerText = "🌱 初階水平";
-        badge.style.backgroundColor = var(--warning);
-        desc.innerText = "你已經掌握了基本拆碼邏輯，目前正處於成長期。多練習常用字，速度會突飛猛進。";
+    if (wpm >= 60) {
+        badge.innerText = "🏆 專業速錄師 (Professional)";
+        badge.style.backgroundColor = "#8b5cf6";
+        feedback.innerText = "出類拔萃！您的速度已達到資深文書官標準。這意味著您具備每分鐘處理超過 60 字的高效能，是職場中的打字精英！";
+    } else if (wpm >= 40) {
+        badge.innerText = "🌟 業界合格 (Qualified)";
+        badge.style.backgroundColor = "#10b981";
+        feedback.innerText = "恭喜達標！您的速度已符合大部分政府機構與大型企業的入職要求（一般標準為 30-40 WPM）。";
+    } else if (wpm >= 20) {
+        badge.innerText = "🌱 基礎穩定 (Competent)";
+        badge.style.backgroundColor = "#f59e0b";
+        feedback.innerText = "表現穩定。您已掌握倉頡基本邏輯，目前的輸入速度足以應付日常對話與輕量文書工作。";
     } else {
-        badge.innerText = "🥚 新手入門";
-        badge.style.backgroundColor = "#95a5a6";
-        desc.innerText = "萬事起頭難！現在的你正在建立基礎，建議多留意字根對應位置，不要急於求快。";
+        badge.innerText = "🥚 初心練習 (Beginner)";
+        badge.style.backgroundColor = "#94a3b8";
+        feedback.innerText = "萬事起頭難。現在的您正在建立肌肉記憶，建議先確保拆碼正確，速度自然會隨著練習慢慢提升。";
     }
-    
     document.getElementById('resultModal').style.display = 'flex';
 }
 
-function closeModal() {
-    document.getElementById('resultModal').style.display = 'none';
-    loadArticle(articleSelect.value);
-}
-
-articleSelect.onchange = (e) => loadArticle(e.target.value);
-loadArticle(0);
+articleSelect.onchange = (e) => startTest(e.target.value);
+startTest(0);
 </script>
-
 </body>
 </html>
