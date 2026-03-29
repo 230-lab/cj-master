@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-Hant"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;倉頡打字大師 - 專業文章練習&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary: #2c3e50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--accent: #3498db;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--success: #27ae60;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--warning: #f1c40f;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--danger: #e74c3c;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--bg: #f4f7f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--text: #333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.main-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 900px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 20px 40px rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid #eee;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>select {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.text-display {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #fdfdfd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 2.2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #f0f0f0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 180px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>word-wrap: break-word;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.char { color: var(--text); position: relative; transition: 0.1s; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.char-done { color: #ccc; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.char-active {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #fff3cd;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 4px solid var(--warning);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-area {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 30px 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hint {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--accent);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>input#typingInput {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 60%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid #eee;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>input#typingInput:focus { border-color: var(--accent); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.stats-grid {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(4, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #f8f9fa;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.stat-item { text-align: center; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.stat-label { font-size: 0.85rem; color: #7f8c8d; display: block; margin-bottom: 5px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.stat-value { font-size: 1.6rem; font-weight: bold; color: var(--primary); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 彈窗 Modal */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#resultModal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0,0,0,0.8);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 999;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 450px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes popIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from { transform: scale(0.8); opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { transform: scale(1); opacity: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.rank-badge {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-restart {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--accent);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-restart:hover { background: #2980b9; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="main-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;倉頡練習大師&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="articleSelect"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="text-display" id="textDisplay"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="input-area"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hint" id="codeHint"&gt;請開始輸入...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="typingInput" placeholder="輸入倉頡代碼" autofocus autocomplete="off"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="stats-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="stat-item"&gt;&lt;span class="stat-label"&gt;完成進度&lt;/span&gt;&lt;span class="stat-value" id="progressVal"&gt;0/0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="stat-item"&gt;&lt;span class="stat-label"&gt;WPM (速度)&lt;/span&gt;&lt;span class="stat-value" id="wpmVal"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="stat-item"&gt;&lt;span class="stat-label"&gt;時間 (秒)&lt;/span&gt;&lt;span class="stat-value" id="timeVal"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="stat-item"&gt;&lt;span class="stat-label"&gt;錯誤次數&lt;/span&gt;&lt;span class="stat-value" id="mistakeVal" style="color:var(--danger)"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div id="resultModal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 style="margin-top:0;"&gt;練習結算報告&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="font-size: 1.1rem;"&gt;最終速度&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="finalWpm" style="font-size: 3.5rem; font-weight: 900; color: var(--accent);"&gt;0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="font-size: 1rem; margin-top:-5px;"&gt;Words Per Minute&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="rankBadge" class="rank-badge"&gt;計算中...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="rankDesc" style="line-height: 1.6; color: #555; margin-bottom: 30px;"&gt;&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn-restart" onclick="closeModal()"&gt;再挑戰一次&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// --- 數據庫：10篇文章 ---</p>
+<p class="p1">const articles = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "1. 科技與生活", content: "現代科技進步神速，智慧型手機已成為生活的核心。從早晨的鬧鐘到深夜的閱讀，我們依賴屏幕獲取資訊。人工智慧的發展更將自動化推向新高度。然而，在便利之餘，我們也應反思數位疲勞對健康的影響。適時放下手機，親近大自然，找回真實生活的節奏，才能在科技浪潮中保持身心平衡。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "2. 大自然的啟示", content: "走進深山密林，聽見溪水淙淙，看見綠葉繁茂。自然界每一處細節都充滿智慧。種子在泥土中靜默等待，直到春雨降臨才破土而出。這種生命力提醒我們，成長需要時間與耐性。環境保護不只是口號，更是對後代的責任。珍惜每一滴水與每一棵樹，讓這片土地能持續孕育希望與美麗。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "3. 美食的記憶", content: "廚房裡傳來陣陣飯菜香，那是童年最溫暖的回憶。紅燒肉的濃郁、清蒸魚的鮮甜，每一道菜都承載著家人的關愛。美食不僅是味蕾的享受，更是一種文化的傳承。在繁忙的城市生活中，親手為自己煮一頓飯，是最好的減壓方式。細細品味食材的原味，感受那份簡單卻純粹的幸福感。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "4. 閱讀的藝術", content: "書本是一扇通往世界的窗戶。透過文字，我們可以穿越時空，與古聖先賢對話，或探索遙遠的星系。閱讀能開闊視野，提升獨立思考的能力。在安靜的午後，翻開一本書，沉浸在優美的辭句中，靈魂也隨之昇華。文字的力量無窮，它能安慰受傷的心靈，也能點燃心中的熱情與理想。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "5. 城市散步", content: "漫步在街道上，觀察這座城市的律動。古老的紅磚牆與現代的玻璃帷幕並存，訴說著時代的變遷。巷弄裡的咖啡館飄出香氣，路人行色匆匆卻各有故事。城市是一本厚重的書，每一條街都是一個篇章。學會放慢腳步，你會發現平常忽略的美景，可能是牆角的野花，也可能是午後灑落在屋簷上的陽光。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "6. 運動的快樂", content: "汗水滑落臉頰，呼吸變得急促，心跳強而有力。運動帶來的暢快感無可比擬。無論是長跑、游泳還是打球，都能讓身體充滿能量。規律的運動不僅能增強體質，還能分泌多巴胺，讓人心情愉快。挑戰自己的極限，超越昨日的自我，這種成就感是最好的獎勵。讓我們動起來，擁抱健康的生活方式。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "7. 星空的奧秘", content: "仰望夜空，繁星點點，宇宙的廣闊讓人感到謙卑。數十億光年外的光芒，經過漫長的旅途才抵達我們的眼簾。銀河如一條流動的白練，橫跨天際。探索宇宙是人類永恆的夢想。科學家透過觀測，揭開黑洞與星系的祕密。在浩瀚的時空中，地球是我們唯一的家園，守護這顆藍色星球是我們共同的使命。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "8. 音樂的力量", content: "旋律起伏，節奏跳動，音樂是跨越國界的語言。它能表達難以言喻的情感，讓悲傷者得到慰藉，讓歡樂者更加激昂。古典樂的嚴謹優雅，流行樂的動感時尚，各有其獨特魅力。演奏樂器需要專注與練習，那是靈魂與指尖的共舞。當音樂響起，世界彷彿安靜了下來，只剩下心靈與音符的交織。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "9. 旅行的意義", content: "旅行不是為了逃避生活，而是為了不讓生活逃避我們。前往陌生的地方，遇見不同的人，體驗異地的風土人情。走出舒適圈，我們的感官會變得敏銳，心胸也會變得寬廣。在旅途中，我們學會適應與包容，也重新認識了自己。每一次歸來，都有了新的觀點與能量，讓原本平凡的日子變得更有意義。" },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ title: "10. 友誼的價值", content: "真正的友誼像是一盞燈，在黑暗中為我們指引方向。朋友是那個理解你的沉默，支持你的夢想的人。在困難時伸出援手，在成功時共享喜悅。友誼需要真誠去經營，用時間去灌溉。雖然生活會改變，人們會各奔東西，但深厚的情誼經得起考驗。珍惜身邊每一位真心待你的朋友，那是人生最寶貴的財富。" }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">// 核心字典</p>
+<p class="p1">const cjDict = {"現":"mbuu","代":"op","科":"hdyj","技":"qje","進":"ytp","步":"ylh","神":"ifsh","速":"ylok","智":"omda","慧":"qjsh","型":"mgtn","手":"q","機":"udwi","已":"sc","成":"ihsh","為":"itrf","生":"hgm","活":"ehqr","的":"hdi","核":"dvo","心":"p","從":"ooo","早":"at","晨":"mmv","鬧":"lnly","鐘":"clg","到":"mgln","深":"eynd","夜":"yokx","閱":"lnru","讀":"lntm","我":"his","們":"onj","依":"oyv","賴":"dmlo","屏":"shjt","幕":"atbi","獲":"etue","取":"sj","資":"mbo","訊":"yrnj","人":"o","工":"m","發":"nomye","展":"shv","更":"mllk","將":"vmid","自":"hbd","動":"hks","化":"op","推":"qog","向":"hbr","新":"yldj","高":"ybr","度":"it","然":"bkf","而":"mbl","在":"gl","便":"omk","利":"hdln","之","i","餘":"onyd","也","p","應":"yogg","發":"nomye","反":"hke","思","wmp","數":"lvok","位":"oyt","疲":"hdk","勞":"ffs","對":"ytdi","健":"onlk","康":"ihe","影":"vfh","響":"vhlh","適":"ytpk","時":"agdi","放":"ysk","下":"m","親":"yldu","近":"yp","大":"k","察":"jmmf","找":"qi","回":"wr","真":"jtbc","實":"jtwi","節":"thpl","奏":"qhk","才":"dh","能":"itpp","浪":"eiv","潮":"ejbb","中":"l","保":"ord","持":"qghi","身":"hph","平":"mfs","衡":"hory"};</p>
+<p class="p1">const keyMap = {'a':'日','b':'月','c':'金','d':'木','e':'水','f':'火','g':'土','h':'竹','i':'戈','j':'十','k':'大','l':'中','m':'一','n':'弓','o':'人','p':'心','q':'手','r':'口','s':'尸','t':'廿','u':'山','v':'女','w':'田','y':'卜'};</p>
+<p class="p2"><br></p>
+<p class="p1">let currentText = "";</p>
+<p class="p1">let currentIndex = 0;</p>
+<p class="p1">let startTime = null;</p>
+<p class="p1">let timerId = null;</p>
+<p class="p1">let mistakes = 0;</p>
+<p class="p2"><br></p>
+<p class="p1">const textDisplay = document.getElementById('textDisplay');</p>
+<p class="p1">const typingInput = document.getElementById('typingInput');</p>
+<p class="p1">const articleSelect = document.getElementById('articleSelect');</p>
+<p class="p2"><br></p>
+<p class="p1">// 初始化選單</p>
+<p class="p1">articles.forEach((art, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let opt = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opt.value = i;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opt.innerText = art.title;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>articleSelect.appendChild(opt);</p>
+<p class="p1">});</p>
+<p class="p2"><br></p>
+<p class="p1">function loadArticle(idx) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentText = articles[idx].content;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>mistakes = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>startTime = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(timerId) clearInterval(timerId);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('timeVal').innerText = "0";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('wpmVal').innerText = "0";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('mistakeVal').innerText = "0";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>renderText();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateHint();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>typingInput.value = "";</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function renderText() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>textDisplay.innerHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentText.split("").forEach((char, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let span = document.createElement('span');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>span.innerText = char;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>span.className = "char " + (i &lt; currentIndex ? "char-done" : (i === currentIndex ? "char-active" : ""));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>textDisplay.appendChild(span);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('progressVal').innerText = `${currentIndex}/${currentText.length}`;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function updateHint() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const char = currentText[currentIndex];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const code = cjDict[char];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!code) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('codeHint').innerText = "請輸入空白鍵跳過標點符號";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const chineseCode = code.split("").map(l =&gt; keyMap[l] || l).join("");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('codeHint').innerText = `${char}：${chineseCode} (${code.toUpperCase()})`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">typingInput.addEventListener('input', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(!startTime) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>startTime = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>timerId = setInterval(updateStats, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const val = e.target.value.toLowerCase().trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const char = currentText[currentIndex];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const correctCode = cjDict[char];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 處理標點符號</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!correctCode) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentIndex++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>typingInput.value = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>checkFinish();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (val === correctCode) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentIndex++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>typingInput.value = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>checkFinish();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (val.length &gt;= correctCode.length) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mistakes++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('mistakeVal').innerText = mistakes;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>typingInput.value = "";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">});</p>
+<p class="p2"><br></p>
+<p class="p1">function updateStats() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const elapsed = Math.floor((new Date() - startTime) / 1000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('timeVal').innerText = elapsed;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (elapsed &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const wpm = Math.round((currentIndex / elapsed) * 60);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('wpmVal').innerText = wpm;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function checkFinish() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentIndex &gt;= currentText.length) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>clearInterval(timerId);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>showResult();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderText();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateHint();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function showResult() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const wpm = document.getElementById('wpmVal').innerText;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('finalWpm').innerText = wpm;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const badge = document.getElementById('rankBadge');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const desc = document.getElementById('rankDesc');</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (wpm &gt;= 76) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.innerText = "🏆 神速大師";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.style.backgroundColor = "#9b59b6";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>desc.innerText = "你的打字速度簡直不可思議！已經達到專業速記員的水平，對倉頡拆碼的肌肉記憶非常深厚。";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (wpm &gt;= 51) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.innerText = "🌟 熟練寫手";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.style.backgroundColor = var(--success);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>desc.innerText = "非常出色！你已經超越了絕大多數的辦公室使用者，能流暢地將思考轉化為文字。";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (wpm &gt;= 31) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.innerText = "✅ 一般辦公";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.style.backgroundColor = var(--accent);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>desc.innerText = "合格！你的速度應付日常文書處理綽綽有餘，繼續練習將會更快。";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (wpm &gt;= 16) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.innerText = "🌱 初階水平";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.style.backgroundColor = var(--warning);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>desc.innerText = "你已經掌握了基本拆碼邏輯，目前正處於成長期。多練習常用字，速度會突飛猛進。";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.innerText = "🥚 新手入門";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>badge.style.backgroundColor = "#95a5a6";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>desc.innerText = "萬事起頭難！現在的你正在建立基礎，建議多留意字根對應位置，不要急於求快。";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('resultModal').style.display = 'flex';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function closeModal() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('resultModal').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>loadArticle(articleSelect.value);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">articleSelect.onchange = (e) =&gt; loadArticle(e.target.value);</p>
+<p class="p1">loadArticle(0);</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
