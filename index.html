@@ -3,53 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中文打字實戰 - 專業測速版</title>
+    <title>中文打字實戰 - 精準進度版</title>
     <style>
         :root { --bg: #f8fafc; --primary: #6366f1; --text-main: #1e293b; --text-done: #cbd5e1; --error: #ef4444; --active-bg: #eef2ff; }
-        body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; user-select: none; /* 禁止選取文字 */ }
+        body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; user-select: none; }
         .container { background: white; width: 95%; max-width: 900px; padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
-        select { padding: 10px; border-radius: 10px; border: 1px solid #ddd; font-size: 1rem; cursor: pointer; }
-        
-        #textDisplay { font-size: 1.8rem; line-height: 2.2; padding: 30px; background: #ffffff; border-radius: 15px; margin-bottom: 30px; border: 1px solid #f1f5f9; min-height: 150px; word-break: break-all; pointer-events: none; /* 防止滑鼠選取文章內容 */ }
-        
+        select { padding: 10px; border-radius: 10px; border: 1px solid #ddd; font-size: 1rem; }
+        #textDisplay { font-size: 1.8rem; line-height: 2.2; padding: 30px; background: #ffffff; border-radius: 15px; margin-bottom: 30px; border: 1px solid #f1f5f9; min-height: 150px; word-break: break-all; pointer-events: none; }
         .char { color: var(--text-main); transition: 0.1s; border-bottom: 3px solid transparent; }
         .char-done { color: var(--text-done); }
         .char-wrong { color: var(--error); border-bottom: 3px solid var(--error); background: #fee2e2; }
         .char-active { background: var(--active-bg); color: var(--primary); border-bottom: 3px solid var(--primary); font-weight: bold; }
-
         .input-box { text-align: center; margin-bottom: 30px; }
         input#typingInput { width: 95%; font-size: 1.8rem; padding: 18px; border: 3px solid #e2e8f0; border-radius: 15px; outline: none; transition: 0.3s; background: #fcfdff; }
-        input#typingInput:focus { border-color: var(--primary); box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); }
-
+        input#typingInput:focus { border-color: var(--primary); }
         .dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .stat-card { background: #f8fafc; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #f1f5f9; }
         .label { font-size: 0.85rem; color: #64748b; display: block; margin-bottom: 5px; font-weight: 600; }
         .value { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
-
         #resultModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); justify-content: center; align-items: center; z-index: 1000; }
-        .modal-content { background: white; padding: 45px; border-radius: 30px; text-align: center; max-width: 500px; width: 90%; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
+        .modal-content { background: white; padding: 45px; border-radius: 30px; text-align: center; max-width: 500px; width: 90%; }
         .rank-list { text-align: left; margin: 25px 0; background: #f1f5f9; padding: 20px; border-radius: 15px; }
-        .rank-item { display: flex; justify-content: space-between; padding: 10px 15px; border-radius: 8px; margin-bottom: 6px; color: #64748b; font-size: 1.05rem; }
-        .rank-item.active { background: var(--primary); color: white; font-weight: bold; transform: scale(1.05); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        button { background: var(--primary); color: white; border: none; padding: 15px 40px; border-radius: 12px; cursor: pointer; font-size: 1.2rem; font-weight: 700; transition: 0.3s; margin-top: 10px; }
-        button:hover { opacity: 0.9; transform: translateY(-2px); }
+        .rank-item { display: flex; justify-content: space-between; padding: 10px 15px; border-radius: 8px; margin-bottom: 6px; color: #64748b; }
+        .rank-item.active { background: var(--primary); color: white; font-weight: bold; }
+        button { background: var(--primary); color: white; border: none; padding: 15px 40px; border-radius: 12px; cursor: pointer; font-size: 1.2rem; font-weight: 700; }
     </style>
 </head>
-<body oncontextmenu="return false" onselectstart="return false"> <div class="container">
+<body oncontextmenu="return false">
+
+<div class="container">
     <header>
-        <h2 style="color:var(--primary); margin:0; letter-spacing: 1px;">中文打字實戰能力測速</h2>
+        <h2 style="color:var(--primary); margin:0;">中文打字實戰 (精準進度版)</h2>
         <select id="articleSelect"></select>
     </header>
-    <div id="textDisplay">載入文章中...</div>
+    <div id="textDisplay">載入中...</div>
     <div class="input-box">
-        <input type="text" id="typingInput" placeholder="請依照文章輸入（禁止複製貼上）" autofocus autocomplete="off">
+        <input type="text" id="typingInput" placeholder="請精確輸入文字與標點" autofocus autocomplete="off">
     </div>
     <div class="dashboard">
-        <div class="stat-card"><span class="label">總進度</span><span class="value" id="progressVal">0/0</span></div>
-        <div class="stat-card"><span class="label">目前 WPM</span><span class="value" id="wpmVal">0</span></div>
+        <div class="stat-card"><span class="label">有效進度</span><span class="value" id="progressVal">0/0</span></div>
+        <div class="stat-card"><span class="label">真實 WPM</span><span class="value" id="wpmVal">0</span></div>
         <div class="stat-card"><span class="label">測驗用時</span><span class="value" id="timeVal">0s</span></div>
     </div>
 </div>
@@ -58,15 +52,13 @@
     <div class="modal-content">
         <h2 style="margin-top:0;">🎉 測試完成！</h2>
         <p>您的平均速度：<span id="finalWpm" style="font-size: 3rem; font-weight: 900; color: var(--primary);">0</span> WPM</p>
-        
         <div class="rank-list" id="rankList">
             <div class="rank-item" id="rank-pro"><span>🏆 專業速錄師</span><span>60+ WPM</span></div>
             <div class="rank-item" id="rank-qualified"><span>🌟 業界合格級</span><span>40-60 WPM</span></div>
             <div class="rank-item" id="rank-basic"><span>🌱 基礎穩定級</span><span>20-40 WPM</span></div>
             <div class="rank-item" id="rank-novice"><span>🥚 初心練習級</span><span>0-20 WPM</span></div>
         </div>
-        
-        <p id="rankFeedback" style="color: #64748b; font-size: 1rem; line-height: 1.5;"></p>
+        <p id="rankFeedback" style="color: #64748b; font-size: 1rem;"></p>
         <button onclick="location.reload()">重新挑戰</button>
     </div>
 </div>
@@ -79,14 +71,14 @@ const articles = [
     { title: "4. 閱讀的藝術", content: "書本是一扇通往世界的窗戶。透過文字，我們可以穿越時空，與古聖先賢對話，或探索遙遠的星系。閱讀能開闊視野，提升獨立思考的能力。在安靜的午後，翻開一本書，沉浸在優美的辭句中，靈魂也隨之昇華。文字的力量無窮，它能安慰受傷的心靈，也能點燃心中的熱情與理想。" },
     { title: "5. 城市散步", content: "漫步在街道上，觀察這座城市的律動。古老的紅磚牆與現代的玻璃帷幕並存，訴說著時代的變遷。巷弄裡的咖啡館飄出香氣，路人行色匆匆卻各有故事。城市是一本厚重的書，每一條街都是一個篇章。學會放慢腳步，你會發現平常忽略的美景，可能是牆角的野花，也可能是午後灑落在屋簷上的陽光。" },
     { title: "6. 旅行的意義", content: "旅行不是為了逃避生活，而是為了不讓生活逃避我們。前往陌生的地方，遇見不同的人，體驗異地的風土人情。走出舒適圈，我們的感官會變得敏銳，心胸也會變得寬廣。在旅途中，我們學會適應與包容，也重新認識了自己。每一次歸來，都有了新的觀點與能量，讓原本平凡的日子變得更有意義。" },
-    { title: "7. 星空的奧秘", content: "仰望夜空，繁星點點，宇宙的廣闊讓人感到謙卑。數十億光年外的光芒，經過漫長的旅途才抵達我們的眼簾。銀河如一條流動的白練，橫跨天際。探索宇宙是人類永恆的夢想。科學家透過觀測，揭開黑洞與星系的祕密。在浩瀚的時空中，地球是我們唯一的家園，守護這顆藍色星球是我們共同的使命。" },
+    { title: "7. 星空的奧秘", content: "仰望夜空，繁星點點，宇宙的廣闊讓人感到謙卑。數十億光年外的光芒，經過漫長的旅途才抵達我們的眼簾。銀河如一條流動的白練，橫跨天際。探索宇宙是人類永恆的夢夢。科學家透過觀測，揭開黑洞與星系的祕密。在浩瀚的時空中，地球是我們唯一的家園，守護這顆藍色星球是我們共同的使命。" },
     { title: "8. 音樂的力量", content: "旋律起伏，節奏跳動，音樂是跨越國界的語言。它能表達難以言喻的情感，讓悲傷者得到慰藉，讓歡樂者更加激昂。古典樂的嚴謹優雅，流行樂的動感時尚，各有其獨特魅力。演奏樂器需要專注與練習，那是靈魂與指尖的共舞。當音樂響起，世界彷彿安靜了下來，只剩下心靈與音符的交織。" },
     { title: "9. 運動的快樂", content: "汗水滑落臉頰，呼吸變得急促，心跳強而有力。運動帶來的暢快感無可比擬。無論是長跑、游泳還是打球，都能讓身體充滿能量。規律的運動不僅能增強體質，還能分泌多巴胺，讓人心情愉快。挑戰自己的極限，超越昨日的自我，這種成就感是最好的獎勵。讓我們動起來，擁抱健康的生活方式。" },
     { title: "10. 友誼的價值", content: "真正的友誼像是一盞燈，在黑暗中為我們指引方向。朋友是那個理解你的沉默，支持你的夢想的人。在困難時伸出援手，在成功時共享喜悅。友誼需要真誠去經營，用時間去灌溉。雖然生活會改變，人們會各奔東西，但深厚的情誼經得起考驗。珍惜身邊每一位真心待你的朋友，那是人生最寶貴的財富。" }
 ];
 
 let sentenceStartIdx = 0; 
-let currentIdx = 0;       
+let totalCorrectCount = 0; // 只有正確的字才算進這裡
 let articleText = "";
 let startTime = null;
 let timer = null;
@@ -95,23 +87,17 @@ const textDisplay = document.getElementById('textDisplay');
 const typingInput = document.getElementById('typingInput');
 const articleSelect = document.getElementById('articleSelect');
 
-// 初始化題庫
 articles.forEach((a, i) => {
     let opt = document.createElement('option');
     opt.value = i; opt.innerText = a.title;
     articleSelect.appendChild(opt);
 });
 
-// 禁止複製貼上
-typingInput.onpaste = (e) => {
-    e.preventDefault();
-    alert("為了測速準確，請親自打字，禁止使用複製貼上！");
-    return false;
-};
+typingInput.onpaste = (e) => { e.preventDefault(); return false; };
 
 function init(idx) {
     articleText = articles[idx].content;
-    currentIdx = 0; sentenceStartIdx = 0; startTime = null;
+    sentenceStartIdx = 0; totalCorrectCount = 0; startTime = null;
     clearInterval(timer);
     typingInput.value = "";
     document.getElementById('wpmVal').innerText = "0";
@@ -121,19 +107,31 @@ function init(idx) {
 
 function render(inputValue = "") {
     let html = "";
+    let currentCorrectInSentence = 0;
+
     for (let i = 0; i < articleText.length; i++) {
         let char = articleText[i];
         let cls = "char";
+        
         if (i < sentenceStartIdx) {
             cls += " char-done";
         } else if (i >= sentenceStartIdx && i < sentenceStartIdx + inputValue.length) {
-            cls += (inputValue[i - sentenceStartIdx] === char) ? " char-done" : " char-wrong";
+            if (inputValue[i - sentenceStartIdx] === char) {
+                cls += " char-done";
+                currentCorrectInSentence++;
+            } else {
+                cls += " char-wrong";
+            }
         }
         if (i === sentenceStartIdx + inputValue.length) cls += " char-active";
         html += `<span class="${cls}">${char}</span>`;
     }
+
+    // 更新總有效進度：過去句子的總和 + 當前句子正確的字數
+    totalCorrectCount = sentenceStartIdx + currentCorrectInSentence;
+    
     textDisplay.innerHTML = html;
-    document.getElementById('progressVal').innerText = `${currentIdx}/${articleText.length}`;
+    document.getElementById('progressVal').innerText = `${totalCorrectCount}/${articleText.length}`;
 }
 
 typingInput.addEventListener('input', (e) => {
@@ -144,25 +142,23 @@ typingInput.addEventListener('input', (e) => {
 
     const val = e.target.value;
     const puncRegex = /[，。？！；：、]/;
-    currentIdx = sentenceStartIdx + val.length;
+    
+    // 渲染並計算當前進度
+    render(val);
 
+    // 檢查是否打對了標點符號清空
     if (val.length > 0) {
         const lastCharTyped = val[val.length - 1];
         const lastTargetChar = articleText[sentenceStartIdx + val.length - 1];
         
-        // 只要最後一個字打對了標點符號，就立刻清空
         if (lastCharTyped === lastTargetChar && puncRegex.test(lastCharTyped)) {
-            sentenceStartIdx = currentIdx;
+            sentenceStartIdx += val.length;
             typingInput.value = "";
             render("");
-        } else {
-            render(val);
         }
-    } else {
-        render("");
     }
 
-    if (currentIdx >= articleText.length) {
+    if (totalCorrectCount >= articleText.length) {
         clearInterval(timer);
         setTimeout(showResult, 300);
     }
@@ -171,7 +167,8 @@ typingInput.addEventListener('input', (e) => {
 function updateStats() {
     const sec = Math.floor((new Date() - startTime) / 1000);
     document.getElementById('timeVal').innerText = sec + "s";
-    const wpm = Math.round((currentIdx / (sec || 1)) * 60);
+    // 使用 totalCorrectCount (有效進度) 來計算 WPM
+    const wpm = Math.round((totalCorrectCount / (sec || 1)) * 60);
     document.getElementById('wpmVal').innerText = wpm;
 }
 
@@ -183,16 +180,16 @@ function showResult() {
 
     if (wpm >= 60) {
         document.getElementById('rank-pro').classList.add('active');
-        feedback.innerText = "令人驚嘆！您的速度已達到職業速錄師水準，具備極高的公務處理效率。";
+        feedback.innerText = "令人驚嘆！這是專業級別的速度。";
     } else if (wpm >= 40) {
         document.getElementById('rank-qualified').classList.add('active');
-        feedback.innerText = "非常出色！您已達標專業辦公要求的速度，勝任絕大部分文字工作。";
+        feedback.innerText = "非常出色！您已達標專業辦公要求的速度。";
     } else if (wpm >= 20) {
         document.getElementById('rank-basic').classList.add('active');
-        feedback.innerText = "表現穩定。這是一個良好的基礎，足以應付日常電郵與一般溝通。";
+        feedback.innerText = "表現穩定。這是一個良好的基礎。";
     } else {
         document.getElementById('rank-novice').classList.add('active');
-        feedback.innerText = "仍在起步階段。建議每天練習 10 分鐘，您的肌肉記憶會快速進步！";
+        feedback.innerText = "繼續練習，速度會隨著肌肉記憶而提升！";
     }
     document.getElementById('resultModal').style.display = 'flex';
 }
