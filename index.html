@@ -3,169 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中文打字測速 - 業界標準版</title>
+    <title>中文打字測速 - 實戰標準版</title>
     <style>
-        :root {
-            --bg: #f8fafc;
-            --primary: #6366f1;
-            --text-main: #1e293b;
-            --text-done: #cbd5e1;
-            --active-bg: #eef2ff;
-        }
-
-        body {
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: white;
-            width: 90%;
-            max-width: 850px;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
-        }
-
-        select {
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 1rem;
-        }
-
-        #textDisplay {
-            font-size: 1.8rem;
-            line-height: 2;
-            padding: 25px;
-            background: #ffffff;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid #f1f5f9;
-            min-height: 120px;
-            word-break: break-all;
-        }
-
-        .char { color: var(--text-main); }
+        :root { --bg: #f8fafc; --primary: #6366f1; --text-main: #1e293b; --text-done: #cbd5e1; --active-bg: #eef2ff; }
+        body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; width: 90%; max-width: 850px; padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
+        select { padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem; }
+        #textDisplay { font-size: 1.8rem; line-height: 2; padding: 25px; background: #ffffff; border-radius: 12px; margin-bottom: 30px; border: 1px solid #f1f5f9; min-height: 120px; word-break: break-all; }
+        .char { color: var(--text-main); transition: 0.1s; }
         .char-done { color: var(--text-done); }
-        .char-active { 
-            background: var(--active-bg); 
-            color: var(--primary);
-            border-bottom: 4px solid var(--primary);
-            font-weight: bold;
-        }
-
+        .char-active { background: var(--active-bg); color: var(--primary); border-bottom: 4px solid var(--primary); font-weight: bold; }
         .input-box { text-align: center; margin-bottom: 30px; }
-        
-        input#typingInput {
-            width: 90%;
-            font-size: 2rem;
-            padding: 15px;
-            text-align: center;
-            border: 3px solid #e2e8f0;
-            border-radius: 15px;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        input#typingInput:focus { border-color: var(--primary); }
-
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
+        input#typingInput { width: 95%; font-size: 1.8rem; padding: 15px; text-align: left; border: 3px solid #e2e8f0; border-radius: 15px; outline: none; transition: 0.3s; }
+        input#typingInput:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(99, 102, 241, 0.1); }
+        .dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .stat-card { background: #f8fafc; padding: 15px; border-radius: 12px; text-align: center; }
         .label { font-size: 0.8rem; color: #64748b; display: block; margin-bottom: 5px; }
         .value { font-size: 1.6rem; font-weight: 700; }
-
-        /* Modal */
-        #resultModal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 24px;
-            text-align: center;
-            max-width: 450px;
-        }
-
-        .rank-tag {
-            font-size: 1.2rem;
-            padding: 10px 25px;
-            border-radius: 50px;
-            color: white;
-            display: inline-block;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
+        #resultModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background: white; padding: 40px; border-radius: 24px; text-align: center; max-width: 450px; width: 85%; }
+        .rank-tag { font-size: 1.2rem; padding: 10px 25px; border-radius: 50px; color: white; display: inline-block; margin: 20px 0; font-weight: bold; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem; font-weight: 600; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h2 style="color:var(--primary);">中文打字能力測速</h2>
+        <h2 style="color:var(--primary); margin:0;">中文打字實戰測速</h2>
         <select id="articleSelect"></select>
     </header>
-
     <div id="textDisplay"></div>
-
     <div class="input-box">
-        <input type="text" id="typingInput" placeholder="在此輸入中文字..." autofocus>
+        <input type="text" id="typingInput" placeholder="請依照文章輸入，包含標點符號..." autofocus autocomplete="off">
     </div>
-
     <div class="dashboard">
-        <div class="stat-card"><span class="label">進度</span><span class="value" id="progressVal">0/0</span></div>
-        <div class="stat-card"><span class="label">即時 WPM</span><span class="value" id="wpmVal">0</span></div>
+        <div class="stat-card"><span class="label">總進度</span><span class="value" id="progressVal">0/0</span></div>
+        <div class="stat-card"><span class="label">平均 WPM</span><span class="value" id="wpmVal">0</span></div>
         <div class="stat-card"><span class="label">用時</span><span class="value" id="timeVal">0s</span></div>
     </div>
 </div>
 
 <div id="resultModal">
     <div class="modal-content">
-        <h2>測試完成！</h2>
-        <p>您的平均打字速度</p>
+        <h2 style="margin-top:0;">測試完成！</h2>
+        <p>您的平均打字速度為</p>
         <div style="font-size: 4rem; font-weight: 900; color: var(--primary);" id="finalWpm">0</div>
-        <p>字 / 分鐘 (WPM)</p>
+        <p style="margin-top:-10px;">字 / 分鐘 (WPM)</p>
         <div id="rankBadge" class="rank-tag"></div>
         <p id="rankFeedback" style="line-height: 1.6; color: #64748b; margin-bottom: 25px;"></p>
-        <button onclick="location.reload()">重新挑戰</button>
+        <button onclick="location.reload()">再試一次</button>
     </div>
 </div>
 
@@ -173,9 +61,7 @@
 const articles = [
     { title: "1. 科技與生活", content: "現代科技進步神速，智慧型手機已成為生活的核心。從早晨的鬧鐘到深夜的閱讀，我們依賴屏幕獲取資訊。人工智慧的發展更將自動化推向新高度。然而，在便利之餘，我們也應反思數位疲勞對健康的影響。適時放下手機，親近大自然，找回真實生活的節奏，才能在科技浪潮中保持身心平衡。" },
     { title: "2. 大自然的啟示", content: "走進深山密林，聽見溪水淙淙，看見綠葉繁茂。自然界每一處細節都充滿智慧。種子在泥土中靜默等待，直到春雨降臨才破土而出。這種生命力提醒我們，成長需要時間與耐性。環境保護不只是口號，更是對後代的責任。珍惜每一滴水與每一棵樹，讓這片土地能持續孕育希望與美麗。" },
-    { title: "3. 美食的記憶", content: "廚房裡傳來陣陣飯菜香，那是童年最溫暖的回憶。紅燒肉的濃郁、清蒸魚的鮮甜，每一道菜都承載著家人的關愛。美食不僅是味蕾的享受，更是一種文化的傳承。在繁忙的城市生活中，親手為自己煮一頓飯，是最好的減壓方式。細細品味食材的原味，感受那份簡單卻純粹的幸福感。" },
-    { title: "4. 閱讀的藝術", content: "書本是一扇通往世界的窗戶。透過文字，我們可以穿越時空，與古聖先賢對話，或探索遙遠的星系。閱讀能開闊視野，提升獨立思考的能力。在安靜的午後，翻開一本書，沉浸在優美的辭句中，靈魂也隨之昇華。文字的力量無窮，它能安慰受傷的心靈，也能點燃心中的熱情與理想。" },
-    { title: "5. 城市散步", content: "漫步在街道上，觀察這座城市的律動。古老的紅磚牆與現代的玻璃帷幕並存，訴說著時代的變遷。巷弄裡的咖啡館飄出香氣，路人行色匆匆卻各有故事。城市是一本厚重的書，每一條街都是一個篇章。學會放慢腳步，你會發現平常忽略的美景，可能是牆角的野花，也可能是午後灑落在屋簷上的陽光。" }
+    { title: "3. 美食的記憶", content: "廚房裡傳來陣陣飯菜香，那是童年最溫暖的回憶。紅燒肉的濃郁、清蒸魚的鮮甜，每一道菜都承載著家人的關愛。美食不僅是味蕾的享受，更是一種文化的傳承。在繁忙的城市生活中，親手為自己煮一頓飯，是最好的減壓方式。細細品味食材的原味，感受那份簡單卻純粹的幸福感。" }
 ];
 
 let currentIdx = 0;
@@ -189,15 +75,13 @@ const articleSelect = document.getElementById('articleSelect');
 
 articles.forEach((a, i) => {
     let opt = document.createElement('option');
-    opt.value = i;
-    opt.innerText = a.title;
+    opt.value = i; opt.innerText = a.title;
     articleSelect.appendChild(opt);
 });
 
 function init(idx) {
     articleText = articles[idx].content;
-    currentIdx = 0;
-    startTime = null;
+    currentIdx = 0; startTime = null;
     clearInterval(timer);
     typingInput.value = "";
     document.getElementById('wpmVal').innerText = "0";
@@ -220,27 +104,26 @@ typingInput.addEventListener('input', (e) => {
         startTime = new Date();
         timer = setInterval(updateStats, 1000);
     }
-
+    
     const typedValue = e.target.value;
     const targetChar = articleText[currentIdx];
 
-    // 如果輸入的最後一個字等於目標字
-    if (typedValue.includes(targetChar)) {
+    // 檢查輸入框最後一個字是否匹配目標字
+    if (typedValue.endsWith(targetChar)) {
         currentIdx++;
-        // 清除輸入框中已匹配的部分
-        typingInput.value = typedValue.replace(targetChar, "");
+        
+        // 判斷是否為標點符號 (，。？！；：、)
+        const isPunctuation = /[\uff0c\u3002\uff1f\uff01\uff1b\uff1a\u3001]/.test(targetChar);
+        
+        if (isPunctuation) {
+            typingInput.value = ""; // 打對標點符號，清空輸入框
+        }
+        
+        render();
         
         if (currentIdx >= articleText.length) {
             clearInterval(timer);
-            showResult();
-        } else {
-            render();
-            // 處理標點符號自動跳過
-            const nextChar = articleText[currentIdx];
-            if (/[\s，。、；：？！「」『』（）]/.test(nextChar)) {
-                currentIdx++;
-                render();
-            }
+            setTimeout(showResult, 200);
         }
     }
 });
@@ -261,19 +144,19 @@ function showResult() {
     if (wpm >= 60) {
         badge.innerText = "🏆 專業級 (60+ WPM)";
         badge.style.backgroundColor = "#8b5cf6";
-        feedback.innerText = "出類拔萃！您的速度已達到資深文書官標準。這意味著您具備極高的打字效能。";
+        feedback.innerText = "出類拔萃！這已是職業打字員的水準。";
     } else if (wpm >= 40) {
         badge.innerText = "🌟 業界合格 (40+ WPM)";
         badge.style.backgroundColor = "#10b981";
-        feedback.innerText = "恭喜達標！您的速度已符合大部分政府機構與大型企業的入職要求。";
+        feedback.innerText = "優秀！這代表您完全能勝任一般的文書與行政工作。";
     } else if (wpm >= 20) {
         badge.innerText = "🌱 基礎穩定 (20+ WPM)";
         badge.style.backgroundColor = "#f59e0b";
-        feedback.innerText = "表現穩定。目前的輸入速度足以應付日常對話與輕量文書工作。";
+        feedback.innerText = "達標。目前的輸入速度足以應付一般日常與溝通。";
     } else {
         badge.innerText = "🥚 練習生 (Below 20)";
         badge.style.backgroundColor = "#94a3b8";
-        feedback.innerText = "萬事起頭難。建議每天練習 15 分鐘，速度會明顯提升。";
+        feedback.innerText = "繼續加油！多練習幾次，手感很快就會上來。";
     }
     document.getElementById('resultModal').style.display = 'flex';
 }
